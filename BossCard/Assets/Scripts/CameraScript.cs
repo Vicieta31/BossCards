@@ -7,6 +7,7 @@ public class CameraScript : MonoBehaviour
     bool freeCam = true;
     public Transform objective;
     public Transform cardObjective;
+    Vector3 targetPosition;
 
     Vector3 targetPosition2;
     // Start is called before the first frame update
@@ -23,13 +24,21 @@ public class CameraScript : MonoBehaviour
             freeCam = false;
         }
 
+        UpdatePosition();
 
-        if(freeCam == true)
+        
+    }
+
+
+    void UpdatePosition()
+    {
+        if (freeCam == true)
         {
-            Vector3 targetPosition = objective.transform.position;
+            targetPosition = objective.transform.position;
 
-            transform.position = new Vector3(targetPosition.x,targetPosition.y, transform.position.z);
-        }else
+            transform.position = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
+        }
+        else
         {
             transform.position = new Vector3(targetPosition2.x, targetPosition2.y, transform.position.z);
         }
