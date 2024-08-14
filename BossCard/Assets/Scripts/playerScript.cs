@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-
+    enum dir { UP, DOWN, LEFT, RIGHT }
     public float speed;
     private Vector2 moveInp;
         
@@ -14,12 +14,11 @@ public class player : MonoBehaviour
     bool mUp;
     bool mDown;
 
-    int playerDir;
-
     public Animator playerAnimator;
 
-    int lastDir = 0;
+    bool isAttacking = false;
 
+    dir lastDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -30,101 +29,98 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateMovemnt();
-        checkDirection();
+        InputUpdate();
         UpdateDirVel();
+
+        
+        CheckDirection();
+        playerAnimator.SetFloat("dir", (int)lastDirection);
+        Debug.Log(lastDirection);
     }
 
-    void UpdateMovemnt()
+    void InputUpdate()
     {
         moveInp.x = Input.GetAxisRaw("Horizontal");
         moveInp.y = Input.GetAxisRaw("Vertical");
 
         moveInp.Normalize();
 
+        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
+        {
+            Debug.Log("Z");
+            Attack();
+        }
     }
     void UpdateDirVel()
     {
-        rb.velocity = moveInp * speed;
+        if (!isAttacking)
+        {
+            rb.velocity = moveInp * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero; // Detiene el movimiento durante el ataque
+        }
     }
 
-    void checkDirection()
+    void Attack()
     {
+        isAttacking = true;
+        playerAnimator.Play("ataking");
+
+        StartCoroutine(EndAttack());
+    }
+
+    IEnumerator EndAttack()
+    {
+        // Espera la duración de la animación de ataque
+        isAttacking = true;
+        yield return null;
+
+        // Termina el ataque y permite otras animaciones
+        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(0).length);
+        isAttacking = false;
+    }
+
+    void CheckDirection()
+    {
+        if (isAttacking) return;
+
         if ((moveInp.x == 0) && (moveInp.y == 0))
         {
-            if(lastDir == 1)
-            {
-                playerAnimator.Play("idleRight");
-            }
-            if (lastDir == 2)
-            {
-                playerAnimator.Play("idleLeft");
-            }
-            if (lastDir == 0)
-            {
-                playerAnimator.Play("idleMe");
-            }
-            if (lastDir == 3)
-            {
-                playerAnimator.Play("idleUp");
-            }
-                        
+            playerAnimator.Play("idle");
         }
         if (moveInp.x > 0)
         {
-            if (mUp != true && mDown != true)
+            if (moveInp.y == 0)
             {
-                mRight = true;
-                lastDir = 1;
-                playerAnimator.Play("walkRMe");
+                lastDirection = dir.RIGHT;
+                playerAnimator.Play("walking");
             }
         }
-
-        else
+        else if (moveInp.x < 0)
         {
-            mRight = false;
-        }
-        if (moveInp.x < 0)
-        {
-            if (mUp != true && mDown != true)
+            if (moveInp.y == 0)
             {
-                lastDir = 2;
-                mLeft = true;
-                playerAnimator.Play("walkLMe");
-            }
-            
-        }
-        else
-        {
-            mLeft = false;
-        }
-
-        if (moveInp.y > 0)
-        {
-            if (mLeft != true && mRight != true)
-            {
-                lastDir = 3;
-                mUp = true;
-                playerAnimator.Play("walkUMe");
+                lastDirection = dir.LEFT;
+                playerAnimator.Play("walking");
             }
         }
-        else
+        else if (moveInp.y > 0)
         {
-            mUp = false;
-        }
-
-        if (moveInp.y < 0)
-        {
-            if (mLeft != true && mRight != true)
+            if (moveInp.x == 0)
             {
-                lastDir = 0;
-                mDown = true;
-                playerAnimator.Play("walkDMe");
+                lastDirection = dir.UP;
+                playerAnimator.Play("walking");
             }
         }
-        else
+        else if (moveInp.y < 0)
         {
-            mDown = false;
+            if (moveInp.x == 0)
+            {
+                lastDirection = dir.DOWN;
+                playerAnimator.Play("walking");
+            }
         }
     }
 
