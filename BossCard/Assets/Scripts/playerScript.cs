@@ -35,7 +35,6 @@ public class player : MonoBehaviour
         
         CheckDirection();
         playerAnimator.SetFloat("dir", (int)lastDirection);
-        Debug.Log(lastDirection);
     }
 
     void InputUpdate()
@@ -47,7 +46,6 @@ public class player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
         {
-            Debug.Log("Z");
             Attack();
         }
     }
@@ -86,41 +84,30 @@ public class player : MonoBehaviour
     {
         if (isAttacking) return;
 
-        if ((moveInp.x == 0) && (moveInp.y == 0))
+        if (moveInp == Vector2.zero)
         {
             playerAnimator.Play("idle");
         }
-        if (moveInp.x > 0)
+        else
         {
-            if (moveInp.y == 0)
+            if (moveInp.x > 0)
             {
                 lastDirection = dir.RIGHT;
-                playerAnimator.Play("walking");
             }
-        }
-        else if (moveInp.x < 0)
-        {
-            if (moveInp.y == 0)
+            else if (moveInp.x < 0)
             {
                 lastDirection = dir.LEFT;
-                playerAnimator.Play("walking");
             }
-        }
-        else if (moveInp.y > 0)
-        {
-            if (moveInp.x == 0)
+
+            if (moveInp.y > 0)
             {
                 lastDirection = dir.UP;
-                playerAnimator.Play("walking");
             }
-        }
-        else if (moveInp.y < 0)
-        {
-            if (moveInp.x == 0)
+            else if (moveInp.y < 0)
             {
                 lastDirection = dir.DOWN;
-                playerAnimator.Play("walking");
             }
+            playerAnimator.Play("walking");
         }
     }
 
