@@ -17,13 +17,25 @@ public class player : MonoBehaviour
     public Animator playerAnimator;
 
     bool isAttacking = false;
-
     dir lastDirection;
+
+    struct playerData
+    {
+        public int hp;
+        public int money;
+    }
+
+    playerData pStats = new();
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        pStats.hp = 10;
+        pStats.money = 0;
     }
 
     // Update is called once per frame
