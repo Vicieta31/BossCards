@@ -17,7 +17,7 @@ public class enemyScript : MonoBehaviour
         
     }
 
-    public void enemyHurt()
+    public virtual void Hurt()
     {
         Debug.Log("Auch");
     }

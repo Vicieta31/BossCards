@@ -20,7 +20,13 @@ public class playerAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<enemyScript>().enemyHurt();
+            // i want to insted of enemyScript is the script that the other has
+            other.GetComponent<enemyScript>().Hurt();
+        }
+
+        if (other.CompareTag("Breakable"))
+        {
+            other.GetComponent<breakableParent>().Break();
         }
     }
 }
