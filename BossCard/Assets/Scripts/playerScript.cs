@@ -47,6 +47,8 @@ public class player : MonoBehaviour
         
         CheckDirection();
         playerAnimator.SetFloat("dir", (int)lastDirection);
+
+
     }
 
     void InputUpdate()
