@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class BossBattleScript : MonoBehaviour
@@ -13,6 +14,8 @@ public class BossBattleScript : MonoBehaviour
     private List<Vector3> spawnPositionsList;
 
     public GameObject spawnEnemies;
+
+    public Animator aniCon;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +52,7 @@ public class BossBattleScript : MonoBehaviour
     private void StartBattle()
     {
         Debug.Log("Battle Started");
-        Wave1();
+        StartNextWave();
     }
     private void Wave1() 
     {
@@ -74,25 +77,35 @@ public class BossBattleScript : MonoBehaviour
     {
         Debug.Log("Battle Ended");
         battleEnded = true;
-        // Here you can trigger any end-of-battle logic, such as playing a victory animation, enabling further gameplay, etc.
+
+        aniCon.Play("bossMuerte");
+        GameObject fire = transform.Find("Explosion").gameObject;
+        if (fire != null)
+        {
+            fire.SetActive(true);
+            Debug.Log("Spawner deactivated");
+        }
+        else
+        {
+            Debug.LogError("Spawner GameObject not found!");
+        }
     }
 
     private void StartNextWave()
     {
         if (battleEnded) return;
 
-        currentWave++;
-        if (currentWave == 1)
+        switch (currentWave)
         {
-            Wave1();
-        }
-        else if (currentWave == 2)
-        {
-            Wave2();
-        }
-        else
-        {
-            EndBattle();
+            case 0:
+                Wave1();
+                break;
+            case 1:
+                Wave2();
+                break;
+            default:
+                EndBattle();
+                break;
         }
     }
 
@@ -116,12 +129,12 @@ public class BossBattleScript : MonoBehaviour
 
     private void OnEnemyDeath()
     {
-        activeEnemies--;
+        activeEnemies = Mathf.Max(0, activeEnemies - 1);
         Debug.Log("Enemy Died. Active enemies remaining: " + activeEnemies);
         if (activeEnemies <= 0)
         {
-            // Trigger the next wave or end the battle
-            Wave2();
+            currentWave++;
+            StartNextWave();
         }
     }
 }
