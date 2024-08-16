@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 872108547430756517}
+  spawnObject: {fileID: 749317770997707131, guid: 8dbceb564e495934fb33ec1af6bf3657, type: 3}
 --- !u!95 &872108547430756517
 Animator:
   serializedVersion: 5
