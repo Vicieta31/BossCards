@@ -237,4 +237,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 10
   knockTime: 0.3
-  baseDamage: 0
+  baseDamage: 1
+  currentAttack: {fileID: 0}

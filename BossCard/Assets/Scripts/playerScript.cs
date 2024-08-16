@@ -30,7 +30,8 @@ public class playerScript : MonoBehaviour
 
     int buffSpeed;
     int buffAttack;
-    int buffY;
+    int buffShield;
+    int shield = 0;
 
     public Animator playerAnimator;
 
@@ -60,6 +61,12 @@ public class playerScript : MonoBehaviour
 
     public void DamageSelf(float knockTime, float damage)
     {
+        damage -= shield;
+        if (damage <=0)
+        {
+            damage = 1;
+        }
+
         currentHealth.RunTimeValue -= damage;
         playerHealthSignal.Raise();
         StartCoroutine(KnockCo(knockTime));
@@ -74,7 +81,7 @@ public class playerScript : MonoBehaviour
     {
         buffSpeed = 0;
         buffAttack = 0;
-        buffY = 0;
+        buffShield = 0;
         foreach (int power in currentPowers.RunTimeValue)
         {
             if (power == 1) 
@@ -87,7 +94,7 @@ public class playerScript : MonoBehaviour
             }
             if (power == 3)
             {
-                buffY++;
+                buffShield++;
             }
         } 
         UpdatePowers();
@@ -111,14 +118,21 @@ public class playerScript : MonoBehaviour
             speed = 10f;
         }
 
-        if (buffAttack == 0)
+        if (buffShield == 0)
         {
-
+            shield = 0;
         }
-
-        if (buffY == 0)
+        else if (buffShield == 1)
         {
-
+            shield = 1;
+        }
+        else if (buffShield == 2)
+        {
+            shield = 2;
+        }
+        else if (buffShield == 3)
+        {
+            shield = 3;
         }
     }
 

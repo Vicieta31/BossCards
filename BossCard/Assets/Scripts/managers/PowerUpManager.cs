@@ -8,7 +8,7 @@ public class PowerUpManager : MonoBehaviour
     public Image[] powers;
     public Sprite coin;
     public Sprite fire;
-    public Sprite power3;
+    public Sprite shield;
     public Sprite noneS;
 
     public PowersList currentPowers;
@@ -41,7 +41,7 @@ public class PowerUpManager : MonoBehaviour
             switch (powerAct)
             {
                 case 3:
-                    powers[i].sprite = power3;
+                    powers[i].sprite = shield;
                     break;
                 case 2:
                     powers[i].sprite = fire;
