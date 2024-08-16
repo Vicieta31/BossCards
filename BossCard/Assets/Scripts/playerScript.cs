@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static enemyScript;
 
-public class player : MonoBehaviour
+enum dir { UP, DOWN, LEFT, RIGHT }
+public enum PlayerState
 {
-    enum dir { UP, DOWN, LEFT, RIGHT }
+    walk,
+    attack,
+    interact,
+    stagger
+}
+public class playerScript : MonoBehaviour
+{
+
+    public PlayerState currentState;
     public float speed;
     private Vector2 moveInp;
         
@@ -18,37 +28,48 @@ public class player : MonoBehaviour
 
     bool isAttacking = false;
     dir lastDirection;
-
-    struct playerData
-    {
-        public int hp;
-        public int money;
-    }
-
-    playerData pStats = new();
-
-
-
+    public FloatValue currentHealth;
+    public MySignal playerHealthSignal;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        pStats.hp = 10;
-        pStats.money = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         InputUpdate();
-        UpdateDirVel();
-
-        
+        if (currentState != PlayerState.stagger)
+        {
+            UpdateDirVel();
+        }
         CheckDirection();
         playerAnimator.SetFloat("dir", (int)lastDirection);
+    }
 
+    public void DamageSelf(float knockTime, float damage)
+    {
+        currentHealth.RunTimeValue -= damage;
+        playerHealthSignal.Raise();
+        StartCoroutine(KnockCo(knockTime));
 
+        if (currentHealth.RunTimeValue <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator KnockCo(float knockTime)
+    {
+        if (rb != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            rb.velocity = Vector2.zero;
+            currentState = PlayerState.walk;
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void InputUpdate()
@@ -67,6 +88,7 @@ public class player : MonoBehaviour
     {
         if (!isAttacking)
         {
+            //Debug.Log("No se mueve por stagger");
             rb.velocity = moveInp * speed;
         }
         else
@@ -74,7 +96,6 @@ public class player : MonoBehaviour
             rb.velocity = Vector2.zero; // Detiene el movimiento durante el ataque
         }
     }
-
     void Attack()
     {
         isAttacking = true;
@@ -82,7 +103,6 @@ public class player : MonoBehaviour
 
         StartCoroutine(EndAttack());
     }
-
     IEnumerator EndAttack()
     {
         // Espera la duración de la animación de ataque
@@ -93,7 +113,6 @@ public class player : MonoBehaviour
         yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(0).length);
         isAttacking = false;
     }
-
     void CheckDirection()
     {
         if (isAttacking) return;

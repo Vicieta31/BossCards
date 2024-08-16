@@ -7,6 +7,7 @@ public class enemyLog : enemyScript
     // Use this for initialization
     void Start()
     {
+        currentState = EnemyState.idle;
 
     }
 
@@ -14,6 +15,14 @@ public class enemyLog : enemyScript
     void Update()
     {
 
+    }
+
+    private void ChangeState(EnemyState newState)
+    {
+        if (currentState != newState)
+        {
+            currentState = newState;
+        }
     }
 
     public override void Hurt()
