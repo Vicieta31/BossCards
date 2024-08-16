@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c55d1c460eadc8429dbb32b8cc245f1, type: 3}
   m_Name: PowersPlayer
   m_EditorClassIdentifier: 
-  powersInitial: 010000000100000001000000
-  RunTimeValue: 010000000100000001000000
+  powersInitial: 000000000000000000000000
+  RunTimeValue: 000000000000000000000000
