@@ -402,6 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571458370187066371}
   - component: {fileID: 7965989551700223142}
+  - component: {fileID: 8616980419266217231}
   - component: {fileID: 5455123666680001283}
   - component: {fileID: 8528669920072280818}
   - component: {fileID: 1136758896872891643}
@@ -445,11 +446,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0ce28f92020764583f166db31db5d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPowers: {fileID: 11400000, guid: 890ddffcaa8ae564d9d7d1814816b3bd, type: 2}
   currentState: 0
-  speed: 5
+  baseSpeed: 5
   playerAnimator: {fileID: 1274682724820214283}
   currentHealth: {fileID: 11400000, guid: 26b36bddc0c755b48885919dc59f3b37, type: 2}
   playerHealthSignal: {fileID: 11400000, guid: 270baf3de2780624ab6ed325505d847c, type: 2}
+--- !u!114 &8616980419266217231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448908908110472110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4c941a611f37c499c65eb5ebdb9df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: f39499279f0bb1a43b00fce366e072bd, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7965989551700223142}
+        m_TargetAssemblyTypeName: playerScript, Assembly-CSharp
+        m_MethodName: QuantityPowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &5455123666680001283
 BoxCollider2D:
   m_ObjectHideFlags: 0

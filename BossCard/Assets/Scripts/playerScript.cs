@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static enemyScript;
 
@@ -11,11 +12,14 @@ public enum PlayerState
     interact,
     stagger
 }
+
 public class playerScript : MonoBehaviour
 {
+    public PowersList currentPowers;
 
     public PlayerState currentState;
-    public float speed;
+    public float baseSpeed;
+    float speed;
     private Vector2 moveInp;
         
     Rigidbody2D rb;
@@ -23,6 +27,10 @@ public class playerScript : MonoBehaviour
     bool mLeft;
     bool mUp;
     bool mDown;
+
+    int buffSpeed;
+    int buffX;
+    int buffY;
 
     public Animator playerAnimator;
 
@@ -34,6 +42,7 @@ public class playerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = baseSpeed;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -58,6 +67,59 @@ public class playerScript : MonoBehaviour
         if (currentHealth.RunTimeValue <= 0)
         {
             this.gameObject.SetActive(false);
+        }
+    }
+    
+    public void QuantityPowers()
+    {
+        buffSpeed = 0;
+        buffX = 0;
+        buffY = 0;
+        Debug.Log(currentPowers.RunTimeValue.Count);
+        foreach (int power in currentPowers.RunTimeValue)
+        {
+            if (power == 1) 
+            {
+                buffSpeed++;
+            }
+            if (power == 2)
+            {
+                buffX++;
+            }
+            if (power == 3)
+            {
+                buffY++;
+            }
+        } 
+        UpdatePowers();
+    }
+    private void UpdatePowers()
+    {
+        if (buffSpeed == 0)
+        {
+            speed = baseSpeed;
+        }
+        else if (buffSpeed == 1)
+        {
+            speed = 6.7f;
+        }
+        else if (buffSpeed == 2)
+        {
+            speed = 8.3f;
+        }
+        else if (buffSpeed == 3)
+        {
+            speed = 10f;
+        }
+
+        if (buffX == 0)
+        {
+
+        }
+
+        if (buffY == 0)
+        {
+
         }
     }
 
