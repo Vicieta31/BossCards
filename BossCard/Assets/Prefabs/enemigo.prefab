@@ -52,7 +52,7 @@ MonoBehaviour:
   currentState: 0
   maxHealth: {fileID: 11400000, guid: e0f445785a4be6b428a2bdc0a1f6ee64, type: 2}
   health: 0
-  baseAttack: 0
+  baseAttack: 1
   moveSpeed: 0
 --- !u!212 &3163623142535090337
 SpriteRenderer:
@@ -237,4 +237,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 10
   knockTime: 0.3
-  damage: 1
+  baseDamage: 0

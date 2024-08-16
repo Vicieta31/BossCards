@@ -15,7 +15,6 @@ public class PowersList : ScriptableObject, ISerializationCallbackReceiver
     {
         // Ensure RunTimeValue is a new list with the same elements as powersInitial
         RunTimeValue = new List<int>(powersInitial);
-        Debug.Log(RunTimeValue[0]);
     }
 
     public void OnBeforeSerialize()

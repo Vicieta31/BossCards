@@ -29,7 +29,7 @@ public class playerScript : MonoBehaviour
     bool mDown;
 
     int buffSpeed;
-    int buffX;
+    int buffAttack;
     int buffY;
 
     public Animator playerAnimator;
@@ -73,9 +73,8 @@ public class playerScript : MonoBehaviour
     public void QuantityPowers()
     {
         buffSpeed = 0;
-        buffX = 0;
+        buffAttack = 0;
         buffY = 0;
-        Debug.Log(currentPowers.RunTimeValue.Count);
         foreach (int power in currentPowers.RunTimeValue)
         {
             if (power == 1) 
@@ -84,7 +83,7 @@ public class playerScript : MonoBehaviour
             }
             if (power == 2)
             {
-                buffX++;
+                buffAttack++;
             }
             if (power == 3)
             {
@@ -112,7 +111,7 @@ public class playerScript : MonoBehaviour
             speed = 10f;
         }
 
-        if (buffX == 0)
+        if (buffAttack == 0)
         {
 
         }

@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 4951586590802968942}
   - component: {fileID: 749067062527816250}
   - component: {fileID: 6802477739987653447}
+  - component: {fileID: 7050375451421852770}
   m_Layer: 6
   m_Name: rightA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4951586590802968942
 Transform:
   m_ObjectHideFlags: 0
@@ -40,7 +41,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005027892023267552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -97,7 +98,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
-  damage: 1
+  baseDamage: 1
+  currentAttack: {fileID: 11400000, guid: 890ddffcaa8ae564d9d7d1814816b3bd, type: 2}
+--- !u!114 &7050375451421852770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005027892023267552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4c941a611f37c499c65eb5ebdb9df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: f39499279f0bb1a43b00fce366e072bd, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6802477739987653447}
+        m_TargetAssemblyTypeName: KnockBack, Assembly-CSharp
+        m_MethodName: QuantityPowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2660699914561269245
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,13 +139,14 @@ GameObject:
   - component: {fileID: 828631778253770984}
   - component: {fileID: 712882522593249252}
   - component: {fileID: 8656698363545214051}
+  - component: {fileID: 3603286999890715400}
   m_Layer: 6
   m_Name: UpA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &828631778253770984
 Transform:
   m_ObjectHideFlags: 0
@@ -138,7 +169,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2660699914561269245}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -195,7 +226,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
-  damage: 1
+  baseDamage: 1
+  currentAttack: {fileID: 11400000, guid: 890ddffcaa8ae564d9d7d1814816b3bd, type: 2}
+--- !u!114 &3603286999890715400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2660699914561269245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4c941a611f37c499c65eb5ebdb9df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: f39499279f0bb1a43b00fce366e072bd, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8656698363545214051}
+        m_TargetAssemblyTypeName: KnockBack, Assembly-CSharp
+        m_MethodName: QuantityPowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3558841920264271898
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,13 +267,14 @@ GameObject:
   - component: {fileID: 8609943036878784039}
   - component: {fileID: 3752135874403279618}
   - component: {fileID: 6418594078749687883}
+  - component: {fileID: 387886274365280422}
   m_Layer: 6
   m_Name: leftA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8609943036878784039
 Transform:
   m_ObjectHideFlags: 0
@@ -236,7 +297,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3558841920264271898}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -293,7 +354,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
-  damage: 1
+  baseDamage: 1
+  currentAttack: {fileID: 11400000, guid: 890ddffcaa8ae564d9d7d1814816b3bd, type: 2}
+--- !u!114 &387886274365280422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558841920264271898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4c941a611f37c499c65eb5ebdb9df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: f39499279f0bb1a43b00fce366e072bd, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6418594078749687883}
+        m_TargetAssemblyTypeName: KnockBack, Assembly-CSharp
+        m_MethodName: QuantityPowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6357683497410944717
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,13 +395,14 @@ GameObject:
   - component: {fileID: 2174649226619237025}
   - component: {fileID: 2825746550515617561}
   - component: {fileID: 5632645300581995422}
+  - component: {fileID: 7064414313679041673}
   m_Layer: 6
   m_Name: downA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2174649226619237025
 Transform:
   m_ObjectHideFlags: 0
@@ -334,7 +425,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6357683497410944717}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -391,7 +482,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
-  damage: 1
+  baseDamage: 1
+  currentAttack: {fileID: 11400000, guid: 890ddffcaa8ae564d9d7d1814816b3bd, type: 2}
+--- !u!114 &7064414313679041673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6357683497410944717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4c941a611f37c499c65eb5ebdb9df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signal: {fileID: 11400000, guid: f39499279f0bb1a43b00fce366e072bd, type: 2}
+  signalEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5632645300581995422}
+        m_TargetAssemblyTypeName: KnockBack, Assembly-CSharp
+        m_MethodName: QuantityPowers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6448908908110472110
 GameObject:
   m_ObjectHideFlags: 0
