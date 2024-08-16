@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class enemyScript : MonoBehaviour
 {
+    //Boss Battle
+    public delegate void DeathAction();
+    public event DeathAction OnDeath;
+
+
     public enum EnemyState
     {
         idle,
@@ -46,8 +51,16 @@ public class enemyScript : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            this.gameObject.SetActive(false);
+            Die();
         }
+    }
+
+    //Boss battle
+    void Die()
+    {
+        Debug.Log("Enemy is dying");
+        OnDeath?.Invoke();
+        Destroy(gameObject);
     }
 
     public void Knock(Rigidbody2D rb, float knockTime, float damage)
