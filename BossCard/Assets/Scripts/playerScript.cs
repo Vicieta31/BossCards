@@ -40,6 +40,9 @@ public class playerScript : MonoBehaviour
     public FloatValue currentHealth;
     public MySignal playerHealthSignal;
 
+
+    public audioManagerScript audioM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +69,7 @@ public class playerScript : MonoBehaviour
         {
             damage = 1;
         }
-
+        audioM.PlaySFX(audioM.hurtPlayer);
         currentHealth.RunTimeValue -= damage;
         playerHealthSignal.Raise();
         StartCoroutine(KnockCo(knockTime));
@@ -175,7 +178,8 @@ public class playerScript : MonoBehaviour
     {
         isAttacking = true;
         playerAnimator.Play("ataking");
-
+        audioM.PlaySFX(audioM.swordGrunt[Random.Range(0, 3)]);
+        audioM.PlaySFX(audioM.sword);
         StartCoroutine(EndAttack());
     }
     IEnumerator EndAttack()

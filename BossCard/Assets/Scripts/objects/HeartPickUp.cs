@@ -18,7 +18,7 @@ public class HeartPickUp : PickUpBase
                 playerHealth.RunTimeValue = playerMaxHealth.initialValue;
             }
             context.Raise();
-
+            audioM.PlaySFX(audioM.heal);
             Destroy(gameObject);
         }
     }

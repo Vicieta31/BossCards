@@ -54,6 +54,7 @@ MonoBehaviour:
   health: 0
   baseAttack: 1
   moveSpeed: 0
+  audioM: {fileID: 0}
 --- !u!212 &3163623142535090337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -237,5 +238,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 10
   knockTime: 0.3
-  baseDamage: 1
+  baseDamage: 4
   currentAttack: {fileID: 0}

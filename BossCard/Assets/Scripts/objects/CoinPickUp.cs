@@ -19,7 +19,7 @@ public class CoinPickUp : PickUpBase
                 }
             }
             context.Raise();
-
+            audioM.PlaySFX(audioM.collect);
             Destroy(gameObject);
         }
     }

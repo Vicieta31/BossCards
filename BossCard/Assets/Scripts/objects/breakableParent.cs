@@ -6,6 +6,13 @@ public class breakableParent : MonoBehaviour
 {
     BoxCollider2D bc;
     // Start is called before the first frame update
+    public audioManagerScript audioM;
+
+    private void Awake()
+    {
+        GameObject auM = GameObject.FindWithTag("audio");
+        audioM = auM.GetComponent<audioManagerScript>();
+    }
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();

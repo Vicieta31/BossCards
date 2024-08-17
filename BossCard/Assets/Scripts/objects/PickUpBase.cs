@@ -8,9 +8,12 @@ public class PickUpBase : MonoBehaviour
 
     public MySignal context;
 
-    // Start is called before the first frame update
+    public audioManagerScript audioM;
+
     void Start()
     {
+        GameObject auM = GameObject.FindWithTag("audio");
+        audioM = auM.GetComponent<audioManagerScript>();
         bc = GetComponent<BoxCollider2D>();
     }
     public virtual void OnTriggerEnter2D(Collider2D other)
@@ -19,6 +22,7 @@ public class PickUpBase : MonoBehaviour
         {
             context.Raise();
         }
+        audioM.PlaySFX(audioM.collect);
     }
     private void OnTriggerExit2D(Collider2D other)
     {

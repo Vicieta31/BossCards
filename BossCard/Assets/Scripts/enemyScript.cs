@@ -25,13 +25,16 @@ public class enemyScript : MonoBehaviour
     public int baseAttack;
     public float moveSpeed;
 
+    public audioManagerScript audioM;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        GameObject auM = GameObject.FindWithTag("audio");
+        audioM = auM.GetComponent<audioManagerScript>();
         health = maxHealth.initialValue;
     }
-    private void Start()
+    void Start()
     {
         bc = GetComponent<BoxCollider2D>();
     }
@@ -51,8 +54,10 @@ public class enemyScript : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            audioM.PlaySFX(audioM.enemyDie);
             Die();
         }
+        audioM.PlaySFX(audioM.enemyHurt);
     }
 
     //Boss battle

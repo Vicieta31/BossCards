@@ -125,6 +125,14 @@ public class BossBattleScript : MonoBehaviour
         {
             Debug.LogError("Spawned object does not have an EnemyScript!");
         }
+
+        Invoke("CloseGame", 5f); // Close the game after 5 seconds
+    }
+
+    private void CloseGame()
+    {
+        Debug.Log("Closing Game...");
+        Application.Quit();
     }
 
     private void OnEnemyDeath()

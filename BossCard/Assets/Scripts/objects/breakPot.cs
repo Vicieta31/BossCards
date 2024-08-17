@@ -29,6 +29,7 @@ public class breakPot : breakableParent
     {
         Instantiate(spawnObject, transform.position, transform.rotation);
         spawnObject.transform.localScale = new Vector3(0.75f,0.75f,1);
+        audioM.PlaySFX(audioM.heartAppear);
     }
 
     void DestroySelf()
