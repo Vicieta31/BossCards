@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class BossBattleScript : MonoBehaviour
@@ -89,6 +88,7 @@ public class BossBattleScript : MonoBehaviour
         {
             Debug.LogError("Spawner GameObject not found!");
         }
+        Invoke("CloseGame", 5f);
     }
 
     private void StartNextWave()
@@ -126,7 +126,7 @@ public class BossBattleScript : MonoBehaviour
             Debug.LogError("Spawned object does not have an EnemyScript!");
         }
 
-        Invoke("CloseGame", 5f); // Close the game after 5 seconds
+        // Invoke("CloseGame", 5f); // Close the game after 5 seconds
     }
 
     private void CloseGame()

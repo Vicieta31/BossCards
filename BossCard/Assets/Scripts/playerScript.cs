@@ -77,9 +77,16 @@ public class playerScript : MonoBehaviour
         if (currentHealth.RunTimeValue <= 0)
         {
             this.gameObject.SetActive(false);
+            Invoke("CloseGame", 5f); // Close the game after 5 seconds
         }
     }
-    
+
+    private void CloseGame()
+    {
+        Debug.Log("Closing Game...");
+        Application.Quit();
+    }
+
     public void QuantityPowers()
     {
         buffSpeed = 0;
